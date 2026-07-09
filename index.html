@@ -475,13 +475,221 @@
             display: block;
         }
 
+        /* ============================================================ */
+        /* ===== CORREÇÕES DE RESPONSIVIDADE PARA CELULAR ===== */
+        /* ============================================================ */
+
         @media (max-width: 768px) {
-            .country-selector-dropdown {
-                width: 240px;
+            /* Popup principal - corrige overflow e altura */
+            .flex.justify-center.items-center.backdrop-blur-md {
+                align-items: flex-start !important;
+                padding: 20px 10px !important;
+                overflow-y: auto !important;
+                height: auto !important;
+                min-height: 100vh !important;
+                background: rgba(42,42,42,0.95) !important;
             }
-            .w-\[950px\] { width: 100%; }
-            .w-\[475px\] { width: 100%; }
-            .flex-1.px-12 { padding-left: 20px; padding-right: 20px; }
+
+            .w-\[950px\] {
+                width: 100% !important;
+                max-width: 100% !important;
+                flex-direction: column !important;
+                border-radius: 16px !important;
+                margin: 0 auto !important;
+                overflow: hidden !important;
+                height: auto !important;
+            }
+
+            .w-\[475px\] {
+                width: 100% !important;
+                flex: none !important;
+                padding: 20px 16px !important;
+            }
+
+            .px-12 {
+                padding-left: 12px !important;
+                padding-right: 12px !important;
+            }
+
+            .pt-\[70px\] {
+                padding-top: 16px !important;
+            }
+
+            .pb-\[40px\] {
+                padding-bottom: 16px !important;
+            }
+
+            .w-\[100vw\] {
+                width: 100% !important;
+            }
+
+            .h-\[100vh\] {
+                height: auto !important;
+                min-height: 100vh !important;
+            }
+
+            /* Esconde o lado esquerdo do popup no mobile */
+            .bg-white.flex-1.relative:first-child {
+                display: none !important;
+            }
+
+            /* Seletor de país */
+            .country-selector {
+                max-width: 100px !important;
+                flex-shrink: 0 !important;
+            }
+
+            .country-selector-input {
+                padding: 8px 8px !important;
+                font-size: 13px !important;
+                height: 44px !important;
+                gap: 4px !important;
+            }
+
+            .country-selector-input img {
+                width: 20px !important;
+                height: 15px !important;
+            }
+
+            .country-selector-dropdown {
+                width: 220px !important;
+                left: -10px !important;
+            }
+
+            .flex.gap-3.items-center {
+                flex-wrap: wrap !important;
+                gap: 8px !important;
+            }
+
+            .flex.gap-3.items-center .flex.flex-col.w-full {
+                flex: 1 !important;
+                min-width: 120px !important;
+            }
+
+            /* Botões - empilha verticalmente */
+            .flex.gap-3.items-center:not(.flex-wrap) {
+                flex-direction: column !important;
+                gap: 10px !important;
+            }
+
+            .flex.gap-3.items-center:not(.flex-wrap) button {
+                width: 100% !important;
+            }
+
+            .email-icon-btn {
+                width: 100% !important;
+                height: 48px !important;
+                border-radius: 8px !important;
+                border: 2px solid #e0e0e0 !important;
+            }
+
+            /* Badges (FIU, Insured, 30L+) */
+            .flex.gap-5.items-center.justify-center.mt-5 {
+                flex-wrap: wrap !important;
+                gap: 6px !important;
+            }
+
+            .flex.gap-5.items-center.justify-center.mt-5 > div {
+                padding: 4px 8px !important;
+                font-size: 9px !important;
+                border-radius: 4px !important;
+            }
+
+            .flex.gap-5.items-center.justify-center.mt-5 img {
+                width: 14px !important;
+                height: 14px !important;
+            }
+
+            .flex.gap-5.items-center.justify-center.mt-5 .ml-\[10px\] {
+                margin-left: 4px !important;
+            }
+
+            .flex.gap-5.items-center.justify-center.mt-5 .ml-\[6px\] {
+                margin-left: 2px !important;
+            }
+
+            /* Textos */
+            .text-xl {
+                font-size: 20px !important;
+            }
+
+            .text-base {
+                font-size: 14px !important;
+            }
+
+            /* Imagens */
+            img[alt="crypto"] {
+                width: 120px !important;
+                height: auto !important;
+            }
+
+            /* Footer */
+            .md\:grid-cols-3 {
+                grid-template-columns: 1fr !important;
+                gap: 12px !important;
+            }
+
+            .md\:px-\[120px\] {
+                padding-left: 16px !important;
+                padding-right: 16px !important;
+            }
+
+            .md\:py-\[80px\] {
+                padding-top: 40px !important;
+                padding-bottom: 40px !important;
+            }
+
+            .text-4xl {
+                font-size: 24px !important;
+            }
+
+            .text-2xl {
+                font-size: 18px !important;
+            }
+
+            /* Header mobile */
+            .mobile-header {
+                background: white !important;
+                border-bottom: 1px solid #eaeaea !important;
+                padding: 8px 0 !important;
+            }
+
+            .mobile-header .flex.justify-between {
+                padding: 0 12px !important;
+            }
+
+            /* Ajusta o container do popup para não ficar por baixo do header */
+            .backdrop-blur-md.bg-opacity-80 {
+                padding-top: 70px !important;
+                min-height: 100vh !important;
+            }
+        }
+
+        /* Correção para telas muito pequenas (até 400px) */
+        @media (max-width: 400px) {
+            .country-selector {
+                max-width: 80px !important;
+            }
+
+            .country-selector-input {
+                font-size: 11px !important;
+                padding: 6px 6px !important;
+                height: 40px !important;
+            }
+
+            .country-selector-input img {
+                width: 16px !important;
+                height: 12px !important;
+            }
+
+            .w-\[475px\] {
+                padding: 12px 8px !important;
+            }
+
+            .px-12 {
+                padding-left: 6px !important;
+                padding-right: 6px !important;
+            }
         }
     </style>
 </head>
